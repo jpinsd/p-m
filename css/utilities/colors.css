@@ -1,3 +1,21 @@
+/*
+@TODO:
+1 - accept a single color for the primary.
+2 - calculate a left and a right analogous color for accents.
+3 - calculate a complimentary color for CTAs
+4 - set gray scale ramp. subtle light grays, darker grays
+
+*** what about opacity instead of solid grays?
+*** light theme uses black with high levels of transparency.
+*** Dark theme uses white with same levels.
+
+
+
+
+
+*/
+
+
 :root {
   --primary: #008AC5;
   --secondary: #E93D20;
