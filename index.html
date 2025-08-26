@@ -6,8 +6,63 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <link rel='stylesheet' href='css/styles.css'>
   <title>P -M test page</title>
+
+  <style>
+    :root{color-scheme: light dark;}
+    html {background: Canvas; color: var(--base-850)}
+    body {width: min(100vw - 4rem, 400px); margin: auto;}
+
+    .card {display: flex; gap: 1rem; border: 1px solid var(--base-200); margin: 1rem 0; padding: 1rem}
+    .grays {display: flex; margin: 2rem 0; outline: 0 solid rgb(from CanvasText r g b / 10%); outline-offset: .25em}
+    .square {width: 20px; height: 20px;}
+
+
+  </style>
 </head>
 <body>
   <h1>hello</h1>
+  <div class='card'>
+    <button>Hello there</button>
+    <button class="-secondary">Secondary Hello</button>
+  </div>
+
+  <div class='card'>
+    <button class="-muted">Hello there</button>
+    <button class="-secondary -muted">Secondary Hello</button>
+  </div>
+
+  <div class='card'>
+    <button class="-accent1">Accent 1</button>
+    <button class="-accent2">Accent 2</button>
+  </div>
+
+  <div class='grays'>
+    <div class='square' style='background: var(--base-000)'></div>
+    <div class='square' style='background: var(--base-025)'></div>
+    <div class='square' style='background: var(--base-050)'></div>
+    <div class='square' style='background: var(--base-075)'></div>
+    <div class='square' style='background: var(--base-100)'></div>
+    <div class='square' style='background: var(--base-150)'></div>
+    <div class='square' style='background: var(--base-200)'></div>
+    <div class='square' style='background: var(--base-250)'></div>
+    <div class='square' style='background: var(--base-300)'></div>
+    <div class='square' style='background: var(--base-350)'></div>
+    <div class='square' style='background: var(--base-400)'></div>
+    <div class='square' style='background: var(--base-450)'></div>
+    <div class='square' style='background: var(--base-500)'></div>
+    <div class='square' style='background: var(--base-550)'></div>
+    <div class='square' style='background: var(--base-600)'></div>
+    <div class='square' style='background: var(--base-650)'></div>
+    <div class='square' style='background: var(--base-700)'></div>
+    <div class='square' style='background: var(--base-750)'></div>
+    <div class='square' style='background: var(--base-800)'></div>
+    <div class='square' style='background: var(--base-850)'></div>
+    <div class='square' style='background: var(--base-900)'></div>
+    <div class='square' style='background: var(--base-950)'></div>
+    <div class='square' style='background: var(--base-999)'></div>
+
+  </div>
+
+
 </body>
 </html>

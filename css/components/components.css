@@ -1,0 +1,65 @@
+button {
+  --bkg : var(--primary);
+  --bkg-hover : var(--primary-hover);
+  --bkg-active : var(--primary-active);
+  --border: var(--bkg);
+
+  background-color: var(--bkg);
+  background-clip: padding-box;
+  color: white;
+  padding: .5em 1.5em;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: .5em;
+  border: 2px solid var(--border);
+  box-shadow: 0 .25em .75em rgb(from var(--bkg) r g b / 80%);
+
+  transition: .2s;
+
+  &.-muted {
+    --bkg : var(--primary-muted);
+    --bkg-hover : var(--primary-muted-hover);
+    --bkg-active : var(--primary-muted-active);
+    --border: var(--bkg);
+    box-shadow: 0 .25em .75em rgb(from var(--bkg) r g b / 60%);
+
+    color: CanvasText;
+  }
+
+  &.-secondary {
+  --bkg : var(--secondary);
+  --bkg-hover : var(--secondary-hover);
+  --bkg-active : var(--secondary-active);
+
+    &.-muted {
+      --bkg : var(--secondary-muted);
+      --bkg-hover : var(--secondary-muted-hover);
+      --bkg-active : var(--secondary-muted-active);
+    }
+  }
+
+  &.-accent1 {
+    --bkg: var(--accent1);
+    --bkg-hover : var(--accent1-hover);
+    --bkg-active : var(--accent1-active);
+  }
+
+  &.-accent2 {
+    --bkg: var(--accent2);
+    --bkg-hover : var(--accent2-hover);
+    --bkg-active : var(--accent2-active);
+  }
+
+
+  &:hover {
+    background-color: var(--bkg-hover);
+    --border: var(--bkg-hover);
+    box-shadow: 0 .25em 1.25em rgb(from var(--bkg-hover) r g b / 95%);
+  }
+
+  &:active {
+    background-color: var(--bkg-active);
+    --border: var(--bkg-active);
+    box-shadow: 0 .15em .5em rgb(from var(--bkg-active) r g b / 95%);
+  }
+}
