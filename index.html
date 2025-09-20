@@ -8,60 +8,299 @@
   <title>P -M test page</title>
 
   <style>
-    :root{color-scheme: light dark;}
+    :root{color-scheme: light dark; interpolate-size: allow-keywords;}
     html {background: Canvas; color: var(--base-850)}
     body {width: min(100vw - 4rem, 400px); margin: auto;}
 
+    details {
+      border: 1px solid var(--base-150);
+      padding: 1rem 1rem 0;
+      margin-top: 1rem;
+      border-radius: .5em;
+
+      overflow: clip;
+    }
+    details::details-content {
+      block-size: 0;
+      transition: block-size 1s, content-visibility 1s;
+      transition-behavior: allow-discrete;
+    }
+
+    details[open]::details-content {
+      block-size: auto;
+    }
+
+    summary {
+      cursor: pointer;
+      user-select: none;
+      background: var(--base-100);
+      margin: -1rem -1rem 0;
+      padding: .5rem;
+      /* list-style-position: outside; */
+
+      &::marker {
+        color: var(--base-500);
+        font-size: 1.5em;
+      }
+    }
     .card {display: flex; gap: 1rem; border: 1px solid var(--base-200); margin: 1rem 0; padding: 1rem}
-    .grays {display: flex; margin: 2rem 0; outline: 0 solid rgb(from CanvasText r g b / 10%); outline-offset: .25em}
+    .grays {display: flex; margin: 2rem 0;}
     .square {width: 20px; height: 20px;}
 
+    dl.table{display: grid; grid-template-columns: max-content 1fr; gap: .5rem; dt{font-weight: bold} dd{margin: 0}}
+
+    .exampleblock {
+      --bkg: transparent;
+      --hover: transparent;
+      width: 64px;
+      aspect-ratio: 1;
+      background: var(--bkg);
+      transition: .3s;
+
+      &:hover {
+        background: var(--hover);
+      }
+      &:active {
+        background: var(--active);
+      }
+
+      &.-primary {
+        --bkg: var(--primary);
+        --hover: var(--primary-hover);
+        --active: var(--primary-active)
+      }
+
+      &.-secondary {
+        --bkg: var(--secondary);
+        --hover: var(--secondary-hover);
+        --active: var(--secondary-active)
+      }
+
+      &.-primary-muted {
+        --bkg: var(--primary-muted);
+        --hover: var(--primary-muted-hover);
+        --active: var(--primary-muted-active)
+      }
+
+      &.-secondary-muted {
+        --bkg: var(--secondary-muted);
+        --hover: var(--secondary-muted-hover);
+        --active: var(--secondary-muted-active)
+      }
+
+      &.-accent1 {
+        --bkg: var(--accent1);
+        --hover: var(--accent1-hover);
+        --active: var(--accent1-active)
+      }
+
+      &.-accent2 {
+        --bkg: var(--accent2);
+        --hover: var(--accent2-hover);
+        --active: var(--accent2-active)
+      }
+
+      &.-glow {
+        --o: .5;
+
+        box-shadow: 0 .5em 1em rgb(from var(--bkg) r g b / var(--o));
+
+        &:hover {
+          --o: .75
+        }
+      }
+    }
+
+    dl.table:has(.exampleblock) {gap: 2rem;}
+    dd:has(.exampleblock) {
+      display: flex;
+      gap: 1rem;
+    }
 
   </style>
 </head>
 <body>
-  <h1>hello</h1>
-  <div class='card'>
-    <button>Hello there</button>
-    <button class="-secondary">Secondary Hello</button>
-  </div>
+  <!-- initial tests -->
+  <details>
+    <summary>hello</summary>
+    <div class='card'>
+      <button>Hello there</button>
+      <button class="-secondary">Secondary Hello</button>
+    </div>
 
-  <div class='card'>
-    <button class="-muted">Hello there</button>
-    <button class="-secondary -muted">Secondary Hello</button>
-  </div>
+    <div class='card'>
+      <button class="-muted">Hello there</button>
+      <button class="-secondary -muted">Secondary Hello</button>
+    </div>
 
-  <div class='card'>
-    <button class="-accent1">Accent 1</button>
-    <button class="-accent2">Accent 2</button>
-  </div>
+    <div class='card' style="background-color: var(--base-100); border-color: transparent">
+      <button class="-accent1">Accent 1</button>
+      <button class="-accent2">Accent 2</button>
+    </div>
 
-  <div class='grays'>
-    <div class='square' style='background: var(--base-000)'></div>
-    <div class='square' style='background: var(--base-025)'></div>
-    <div class='square' style='background: var(--base-050)'></div>
-    <div class='square' style='background: var(--base-075)'></div>
-    <div class='square' style='background: var(--base-100)'></div>
-    <div class='square' style='background: var(--base-150)'></div>
-    <div class='square' style='background: var(--base-200)'></div>
-    <div class='square' style='background: var(--base-250)'></div>
-    <div class='square' style='background: var(--base-300)'></div>
-    <div class='square' style='background: var(--base-350)'></div>
-    <div class='square' style='background: var(--base-400)'></div>
-    <div class='square' style='background: var(--base-450)'></div>
-    <div class='square' style='background: var(--base-500)'></div>
-    <div class='square' style='background: var(--base-550)'></div>
-    <div class='square' style='background: var(--base-600)'></div>
-    <div class='square' style='background: var(--base-650)'></div>
-    <div class='square' style='background: var(--base-700)'></div>
-    <div class='square' style='background: var(--base-750)'></div>
-    <div class='square' style='background: var(--base-800)'></div>
-    <div class='square' style='background: var(--base-850)'></div>
-    <div class='square' style='background: var(--base-900)'></div>
-    <div class='square' style='background: var(--base-950)'></div>
-    <div class='square' style='background: var(--base-999)'></div>
+    <div class='card'>
+      <label for='name'>First and Last name</label>
+      <input type='text' id="name" />
+    </div>
 
-  </div>
+    <div class='grays'>
+      <div class='square' style='background: var(--base-000)'></div>
+      <div class='square' style='background: var(--base-025)'></div>
+      <div class='square' style='background: var(--base-050)'></div>
+      <div class='square' style='background: var(--base-075)'></div>
+      <div class='square' style='background: var(--base-100)'></div>
+      <div class='square' style='background: var(--base-150)'></div>
+      <div class='square' style='background: var(--base-200)'></div>
+      <div class='square' style='background: var(--base-250)'></div>
+      <div class='square' style='background: var(--base-300)'></div>
+      <div class='square' style='background: var(--base-350)'></div>
+      <div class='square' style='background: var(--base-400)'></div>
+      <div class='square' style='background: var(--base-450)'></div>
+      <div class='square' style='background: var(--base-500)'></div>
+      <div class='square' style='background: var(--base-550)'></div>
+      <div class='square' style='background: var(--base-600)'></div>
+      <div class='square' style='background: var(--base-650)'></div>
+      <div class='square' style='background: var(--base-700)'></div>
+      <div class='square' style='background: var(--base-750)'></div>
+      <div class='square' style='background: var(--base-800)'></div>
+      <div class='square' style='background: var(--base-850)'></div>
+      <div class='square' style='background: var(--base-900)'></div>
+      <div class='square' style='background: var(--base-950)'></div>
+      <div class='square' style='background: var(--base-999)'></div>
+    </div>
+  </details>
+
+  <main>
+
+<!-- typography -->
+    <details>
+      <summary>Typography</summary>
+
+      <h1>Heading level 1</h1>
+      <h2>Heading level 2</h2>
+      <h3>Heading level 3</h3>
+      <h4>Heading level 4</h4>
+      <h5>Heading level 5</h5>
+      <h6>Heading level 6</h6>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, voluptatem quam rerum accusantium quasi, id, soluta iusto quae sunt corporis recusandae vitae velit dolores voluptas numquam deserunt? Quam illo quo sapiente necessitatibus, quod et expedita maiores adipisci neque nesciunt fugiat fuga incidunt nostrum earum, cum eaque, deserunt eum repudiandae doloribus molestias accusantium deleniti iusto voluptate. Suscipit laboriosam, ullam, fugit aperiam repellendus vero maiores modi impedit nulla est explicabo labore dolorem saepe doloremque odio iure perspiciatis dolorum nihil quidem! Blanditiis eos consequatur id debitis molestiae similique aperiam eaque dicta, facere rerum ipsa quam nobis amet maxime. Suscipit velit vitae nostrum, magni repellendus, dolor ex debitis autem saepe minima earum culpa, quam doloremque itaque illum ut fugit. Aut similique veniam quo ipsam nam maxime distinctio temporibus suscipit?</p>
+    </details>
+
+<!-- metrics -->
+    <details>
+      <summary>Metrics</summary>
+      <p>Space (padding / margins / radius)</p>
+      <dl class="table">
+        <dt>xxs</dt>
+          <dd>0.125em</dd>
+        <dt>xs</dt>
+          <dd>0.25em</dd>
+        <dt>sm</dt>
+          <dd>0.5em</dd>
+        <dt>md</dt>
+          <dd>0.75em  </dd>
+        <dt>lrg</dt>
+          <dd>1em</dd>
+        <dt>xl</dt>
+          <dd>1.5em</dd>
+        <dt>xxl</dt>
+          <dd>2em</dd>
+      </dl>
+    </details>
+
+<!-- colors -->
+    <details>
+      <summary>Colors</summary>
+
+      <dl class='table'>
+        <dt>Primary</dt>
+          <dd>
+            <div class='exampleblock -primary'></div>
+            <div class='exampleblock -glow -primary'></div>
+          </dd>
+        <dt>Secondary</dt>
+          <dd>
+            <div class='exampleblock -secondary'></div>
+            <div class='exampleblock -glow -secondary'></div>
+          </dd>
+
+        <dt>Primary muted</dt>
+          <dd>
+            <div class='exampleblock -primary-muted'></div>
+            <div class='exampleblock -glow -primary-muted'></div>
+          </dd>
+        <dt>Secondary muted</dt>
+          <dd>
+            <div class='exampleblock -secondary-muted'></div>
+            <div class='exampleblock -glow -secondary-muted'></div>
+          </dd>
+
+        <dt>Accent 1</dt>
+          <dd>
+            <div class='exampleblock -accent1'></div>
+            <div class='exampleblock -glow -accent1'></div>
+          </dd>
+        <dt>Accent 2</dt>
+          <dd>
+            <div class='exampleblock -accent2'></div>
+            <div class='exampleblock -glow -accent2'></div>
+          </dd>
+        <dt>Base: color ramp</dt>
+          <dd>
+            <div class='grays'>
+              <div class='square' style='background: var(--base-000)'></div>
+              <div class='square' style='background: var(--base-025)'></div>
+              <div class='square' style='background: var(--base-050)'></div>
+              <div class='square' style='background: var(--base-075)'></div>
+              <div class='square' style='background: var(--base-100)'></div>
+              <div class='square' style='background: var(--base-150)'></div>
+              <div class='square' style='background: var(--base-200)'></div>
+              <div class='square' style='background: var(--base-250)'></div>
+              <div class='square' style='background: var(--base-300)'></div>
+              <div class='square' style='background: var(--base-350)'></div>
+              <div class='square' style='background: var(--base-400)'></div>
+              <div class='square' style='background: var(--base-450)'></div>
+              <div class='square' style='background: var(--base-500)'></div>
+              <div class='square' style='background: var(--base-550)'></div>
+              <div class='square' style='background: var(--base-600)'></div>
+              <div class='square' style='background: var(--base-650)'></div>
+              <div class='square' style='background: var(--base-700)'></div>
+              <div class='square' style='background: var(--base-750)'></div>
+              <div class='square' style='background: var(--base-800)'></div>
+              <div class='square' style='background: var(--base-850)'></div>
+              <div class='square' style='background: var(--base-900)'></div>
+              <div class='square' style='background: var(--base-950)'></div>
+              <div class='square' style='background: var(--base-999)'></div>
+            </div>
+          </dd>
+      </dl>
+    </details>
+
+<h2>Components and Elements</h2>
+
+  <details open>
+    <summary>Accordion</summary>
+
+    <details open name="details-example">
+      <summary>example 1</summary>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium rerum explicabo harum.</p>
+    </details>
+
+    <details name="details-example">
+      <summary>example 2</summary>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis corporis nisi praesentium.</p>
+    </details>
+
+    <details name="details-example">
+      <summary>example 3</summary>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </details>
+
+  </details>
+
+
+
+  </main>
 
 
 </body>

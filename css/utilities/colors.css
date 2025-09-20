@@ -1,24 +1,25 @@
 /*
-@TODO:
-1 - accept a single color for the primary.
-2 - calculate a left and a right analogous color for accents.
-3 - calculate a complimentary color for CTAs
-4 - set gray scale ramp using CanvasText to auto
-    switch from black to white depending on dark or light mode
+Choose a primary color. CTA, accent-1 and accent-2 colors are calculated.
+- CTA is complimentary, and by default both accent colors are analogous by 12.5° on either side.
+- Base color is used to calculate the text and the color ramp for surface colors.
+    Default base color is browser CanvasText
+- Base, CTA, and both accents can be hard coded instead of calculated,
+    and all colors based on them will update.
+- Colors can also be overridden for dark mode.
 
 */
 
 
 :root {
   /* utils */
-  --accent-angle: 12.25;
+  --accent-angle: 35.5;
 
   --primary: #039ec5;
   --base: CanvasText;
 
   --secondary: hsl(from var(--primary) calc(h + 180) s l);
-  --accent1  : hsl(from var(--primary) calc(h + var(--accent-angle)) s calc(l + 2));
-  --accent2  : hsl(from var(--primary) calc(h - var(--accent-angle)) s calc(l + 2));
+  --accent1  : hsl(from var(--primary) calc(h + var(--accent-angle)) s calc(l - 2));
+  --accent2  : hsl(from var(--primary) calc(h - var(--accent-angle)) s calc(l - 2));
 
 
   /* override calculated colors with static */
@@ -28,15 +29,27 @@
     --accent1: #003FC5;
     --accent2: #00C5B3;
   */
+
+
+  /* dark mode only color change */
+  @media (prefers-color-scheme: dark) {
+
+    /*
+    --base: #0070FF;
+    --accent1  : hsl(from var(--primary) calc(h + 122.25) s calc(l + 2));
+    */
+
+  }
 }
 
 
+/* @TODO: move this to the themes file */
 :root {
   --primary-hover         : hsl(from var(--primary) h calc(s + 5) calc(l + 7));
   --primary-active        : hsl(from var(--primary) h calc(s + 5) calc(l - 7));
   --primary-muted         : hsl(from var(--primary) h s l / 30%);
-  --primary-muted-active  : hsl(from var(--primary) h calc(s + 5) calc(l - 7) / 30%);
   --primary-muted-hover   : hsl(from var(--primary) h calc(s + 5) calc(l + 7) / 30%);
+  --primary-muted-active  : hsl(from var(--primary) h calc(s + 5) calc(l - 7) / 30%);
 
   --secondary-hover       : hsl(from var(--secondary) h calc(s + 10) calc(l + 7));
   --secondary-active      : hsl(from var(--secondary) h calc(s + 10) calc(l - 7));
@@ -44,14 +57,14 @@
   --secondary-muted-hover : hsl(from var(--secondary) h calc(s + 10) calc(l + 7) / 30%);
   --secondary-muted-active: hsl(from var(--secondary) h calc(s + 10) calc(l - 7) / 30%);
 
+  --accent1-hover         : hsl(from var(--accent1) h calc(s + 8) calc(l + 5));
   --accent1-active        : hsl(from var(--accent1) h calc(s + 8) calc(l - 5));
   --accent2-hover         : hsl(from var(--accent2) h calc(s + 8) calc(l + 5));
   --accent2-active        : hsl(from var(--accent2) h calc(s + 8) calc(l - 5));
-  --accent1-hover         : hsl(from var(--accent1) h calc(s + 8) calc(l + 5));
 
 
 
-
+  /* color gradient ramp for base color */
   --base-000: rgb(from var(--base) r g b / 0);
   --base-025: rgb(from var(--base) r g b / 2.5%);
   --base-050: rgb(from var(--base) r g b / 5%);
@@ -75,15 +88,6 @@
   --base-900: rgb(from var(--base) r g b / 90%);
   --base-950: rgb(from var(--base) r g b / 95%);
   --base-999: rgb(from var(--base) r g b / 1);
-
-
-  @media (prefers-color-scheme: dark) {
-    /* --base: #0070FF;
-    --accent1  : hsl(from var(--primary) calc(h + 122.25) s calc(l + 2)); */
-
-  }
-
-
 }
 
 
